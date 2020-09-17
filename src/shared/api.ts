@@ -1,26 +1,24 @@
 import { Post, User } from "./types";
 
-const BASE = "https://jsonplaceholder.typicode.com";
+export const BASE = "https://jsonplaceholder.typicode.com";
 // export const POSTS = `${BASE}/posts`;
 // export const USERS = `${BASE}/users`;
 
+const customFetch = (url: string) => 
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error(res.statusText)
+      return res.json()
+    })
+
 export function getUserById(id: number | string): Promise<User> {
-  return fetch(`${BASE}/users/${id}`)
-    .then(r =>
-      r.json(),
-    );
+  return customFetch(`${BASE}/users/${id}`);
 }
 
 export function getPosts(): Promise<Post[]> {
-  return fetch(`${BASE}/posts`)
-    .then(r =>
-      r.json(),
-    );
+  return customFetch(`${BASE}/posts`);
 }
 
 export function getPostById(id: string): Promise<Post> {
-  return fetch(`${BASE}/posts/${id}`)
-    .then(r =>
-      r.json(),
-    );
+  return customFetch(`${BASE}/posts/${id}`);
 }
