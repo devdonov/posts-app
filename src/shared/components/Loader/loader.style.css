@@ -1,0 +1,40 @@
+.loader {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 6px;
+  background-color: #FF2900;
+  transform: translateX(-100%);
+}
+
+.loader--slide-80 {
+  animation: slideRight80 5s ease-in forwards;
+}
+.loader--slide-100 {
+  animation: slideRight100 330ms ease-in forwards;
+}
+
+@keyframes slideRight80 {
+  30% {
+    transform: translate(-80%, 0);
+  }
+  80% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-40%, 0);
+  }
+}
+
+@keyframes slideRight100 {
+  0% {
+    transform: translate(-40%, 0);
+  }
+  90% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -110%);
+  }
+}

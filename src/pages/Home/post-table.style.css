@@ -1,0 +1,35 @@
+.post-table {
+  --hover-bg: rgba(210, 210, 210, .1);
+  border-collapse: collapse;
+}
+
+.post-table__header,
+.post-table__row {
+  font-size: 1.1rem;
+  height: 40px;
+}
+
+.post-table__header {
+  text-align: left;
+}
+
+.post-table__header th {
+  padding-right: 20px;
+}
+
+.post-table__row {
+  cursor: pointer;
+  transition: background-color .22s ease-in-out;
+}
+
+.post-table__row:hover {
+  background-color: var(--hover-bg);
+}
+
+.post-table__row td:last-child {
+  transition: transform .13s ease-in;
+}
+
+.post-table__row:hover td:last-child {
+  transform: translateX(5px);
+}
