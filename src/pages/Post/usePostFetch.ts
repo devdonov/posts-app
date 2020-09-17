@@ -15,10 +15,11 @@ export function usePostFetch(id: string) {
         setUser(null);
         try {
           const post = await getPostById(id)
-          setPost(post)
-          setUser(await getUserById(post.userId));
+          setPost(post);
+          const user = await getUserById(post.userId)
+          setUser(user);
         } catch (_error) {
-          setError(_error)
+          setError(_error);
         } finally {
           setLoading(false);
         }

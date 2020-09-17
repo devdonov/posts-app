@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { usePostFetch } from './usePostFetch'
 import './post.style.css'
 import { getAnimDelayStyle } from '../../shared/utils.fn'
 import { Loader } from '../../shared/components'
+import { User } from '../../shared/types'
+
+const UserInfo: FC<{ user: User | null }> = ({ user }) => {
+  if (!user) return null;
+
+  return (
+    <div>
+      <span><b>By:</b> <a href={user.website}>{ user.name }</a></span>
+    </div>
+  )
+}
 
 const Post = (props: RouteComponentProps<{ id: string }>) => {
   // TODO: handle error
   const { user, post, isLoading } = usePostFetch(props.match.params.id);
   const loaded = !isLoading;
-
+  
   return (
     <>
       <Loader loaded={loaded} />
@@ -20,9 +31,8 @@ const Post = (props: RouteComponentProps<{ id: string }>) => {
             { post?.title }
           </h1>
           <div style={getAnimDelayStyle(6, 150)} className="fade-in">
-            <div>
-              <span><b>By:</b> <a href={user?.website}>{ user?.name }</a></span>
-            </div>
+            <UserInfo user={user} />
+            
             <p className="post__text">
               { post?.body }
             </p>
